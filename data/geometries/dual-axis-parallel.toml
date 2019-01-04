@@ -1,0 +1,12 @@
+specifies = "geometry"
+type = "dual-parallel"
+dimension = 3
+id = "dual-axis-parallel"
+
+[parameters]
+projection-count = 512
+
+[volume]
+min-point = [0.0, 0.0, 0.0]
+max-point = [1.0, 1.0, 1.0]
+voxels = [512, 512, 512]

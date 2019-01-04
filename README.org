@@ -30,8 +30,14 @@ Scripts to generate the results of https://doi.org/10.1016/j.parco.2018.12.007.
   #+BEGIN_SRC bash
   ./table1 > ../data/cone_beam.mtx
   #+END_SRC
-7. Install Mondriaan
+7. Install and run Mondriaan
   #+BEGIN_SRC bash
-  ...
+   wget http://www.staff.science.uu.nl/~bisse101/Mondriaan/mondriaan_v4.2.tar.gz
+   tar xzf mondriaan_v4.2.tar.gz 
+   cd mondriaan-v4.2-d273ee5382bd085bbedf9e543ddae38d2b136dfd/
+   make
+   ./tools/Mondriaan ../data/cone_beam.mtx 16 0.05 -SplitStrategy=onedimrow
+   ./tools/Mondriaan ../data/cone_beam.mtx 16 0.05 -SplitStrategy=onedimcol
+   ./tools/Mondriaan ../data/cone_beam.mtx 16 0.05 -SplitStrategy=mediumgrain
+   # ...
   #+END_SRC
-8. Run Mondriaan on mtx

@@ -10,7 +10,7 @@ int main() {
 
     auto g = tomo::geometry::cone_beam<T>(v, size, {(T)2.0, (T)2.0},
                                           {size, size}, (T)5.5, (T)3.5);
-    auto k = tomo::dim::joseph<D, T>(v);
+    auto k = tomo::dim::closest<D, T>(v);
 
     int nzs = 0;
     for (auto [idx, line] : g) {

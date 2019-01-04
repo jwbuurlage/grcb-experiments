@@ -1,0 +1,37 @@
+* A geometric partitioning method for distributed tomographic reconstruction
+Scripts to generate the results of https://doi.org/10.1016/j.parco.2018.12.007.
+** Running the code
+1. Clone repository
+  #+BEGIN_SRC bash
+  git clone https://github.com/jwbuurlage/grcb-experiments.git
+  cd grcb-experiments
+  #+END_SRC
+2. Build examples
+  #+BEGIN_SRC bash
+  mkdir build
+  cd build
+  cmake ..
+  #+END_SRC
+3. Generate Table 2: Communication Volumes, e.g. for 64 processors:
+  #+BEGIN_SRC bash
+  mkdir ../data/partitionings/
+  ./table2 --in ../data/geometries/* --out  ../data/partitionings/ -p 64 -e 0.05 --output
+  #+END_SRC
+4. Generate Table 3: Cube partitioning volumes
+  #+BEGIN_SRC bash
+  ./table3 --in ../data/geometries/*
+  #+END_SRC
+5. Generate Table 4: Message counts, e.g. for 64 processors. (This runs out of
+   memory on a single system, was measured with MPI cluster.)
+  #+BEGIN_SRC bash
+  ./table4 --in ../data/geometries/* --part ../data/partitionings/ -p 64 --trivial --bisected
+  #+END_SRC
+6. Run generation of mtx
+  #+BEGIN_SRC bash
+  ./table1 > ../data/cone_beam.mtx
+  #+END_SRC
+7. Install Mondriaan
+  #+BEGIN_SRC bash
+  ...
+  #+END_SRC
+8. Run Mondriaan on mtx

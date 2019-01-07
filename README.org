@@ -1,5 +1,5 @@
 * A geometric partitioning method for distributed tomographic reconstruction
-Scripts to generate the results of https://doi.org/10.1016/j.parco.2018.12.007.
+Scripts to generate the results in the tables of https://doi.org/10.1016/j.parco.2018.12.007.
 ** Running the code
 1. Clone repository
   #+BEGIN_SRC bash
@@ -28,16 +28,21 @@ Scripts to generate the results of https://doi.org/10.1016/j.parco.2018.12.007.
   #+END_SRC
 6. Run generation of mtx
   #+BEGIN_SRC bash
-  ./table1 > ../data/cone_beam.mtx
+  ./table1 --out ../data/
   #+END_SRC
 7. Install and run Mondriaan
   #+BEGIN_SRC bash
-   wget http://www.staff.science.uu.nl/~bisse101/Mondriaan/mondriaan_v4.2.tar.gz
-   tar xzf mondriaan_v4.2.tar.gz 
-   cd mondriaan-v4.2-d273ee5382bd085bbedf9e543ddae38d2b136dfd/
-   make
-   ./tools/Mondriaan ../data/cone_beam.mtx 16 0.05 -SplitStrategy=onedimrow
-   ./tools/Mondriaan ../data/cone_beam.mtx 16 0.05 -SplitStrategy=onedimcol
-   ./tools/Mondriaan ../data/cone_beam.mtx 16 0.05 -SplitStrategy=mediumgrain
-   # ...
+    wget http://www.staff.science.uu.nl/~bisse101/Mondriaan/mondriaan_v4.2.tar.gz
+    tar xzf mondriaan_v4.2.tar.gz 
+    cd mondriaan-v4.2-d273ee5382bd085bbedf9e543ddae38d2b136dfd/
+    make
+    ./tools/Mondriaan ../data/cone_beam_64.mtx 16 0.05 -SplitStrategy=onedimrow
+    ./tools/MondriaanStats ../data/cone_beam_64.mtx-P16
+    # ...
   #+END_SRC
+** Other results from the article
+- The results from Figure 7 and Figure 8 are screenshots taken with the partitioning
+  visualization features of [[https://www.github.com/cicwi/RECAST3D][RECAST3D]]. 
+- The benchmarking results of Figure 9 and Figure 10 are run using [[https://www.github.com/jwbuurlage/Tomos][Tomos]] on top
+  of the [[https://jwbuurlage.github.io/Bulk][MPI backend of Bulk]], see the [[https://github.com/jwbuurlage/Tomos/blob/815ecd1be6d5a63e0d941418bf78bbf0361040a5/tools/run_measurement.cpp][source file for the program that was used]].
+  

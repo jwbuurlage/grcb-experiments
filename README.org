@@ -21,12 +21,16 @@ Scripts to generate the results in the tables of https://doi.org/10.1016/j.parco
   #+BEGIN_SRC bash
   ./table3 --in ../data/geometries/*
   #+END_SRC
-5. Generate Table 4: Message counts, e.g. for 64 processors. (This runs out of
-   memory on a single system, was measured with MPI cluster.)
+5. Generate Table 4: Message counts, e.g. for 64 processors.
   #+BEGIN_SRC bash
   ./table4 --in ../data/geometries/* --part ../data/partitionings/ -p 64 --trivial --bisected
   #+END_SRC
-6. Run generation of mtx
+  /Note:/ This requires a 'fat node', since it depends on a large amount of RAM.
+   The results for the article were measured with an MPI cluster. The code uses
+   Bulk, and here we use its thread backend instead of the MPI backend that was used
+   for the results in the paper.
+6. Run generation of the sparse matrix representations for explicit partitioning
+   with Mondriaan.
   #+BEGIN_SRC bash
   ./table1 --out ../data/
   #+END_SRC
